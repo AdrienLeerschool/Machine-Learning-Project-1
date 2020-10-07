@@ -18,14 +18,14 @@ def make_cmaps():
         bg_map: The colormap for the background
         sc_map: Binary colormap for scatter points
     """
-    top = mpl.cm.get_cmap('Oranges_r')
-    bottom = mpl.cm.get_cmap('Blues')
+    top = mpl.cm.get_cmap('Blues')
+    bottom = mpl.cm.get_cmap('Oranges_r')
 
     newcolors = np.vstack((top(np.linspace(.25, 1., 128)),
                            bottom(np.linspace(0., .75, 128))))
     bg_map = ListedColormap(newcolors, name='OrangeBlue')
 
-    sc_map = ListedColormap(["#ff8000", "DodgerBlue"])
+    sc_map = ListedColormap(["DodgerBlue","#ff8000"])
 
     return bg_map, sc_map
 

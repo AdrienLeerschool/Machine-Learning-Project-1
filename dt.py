@@ -15,11 +15,10 @@ from plot import plot_boundary
 from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
 
+from sklearn.datasets import load_iris
+from sklearn import tree
+import graphviz 
 
-# (Question 1)
-
-# Put your funtions here
-# ...
 
 
 if __name__ == "__main__":
@@ -36,31 +35,21 @@ if __name__ == "__main__":
         clf = clf.fit(X_train, y_train)
         y_pred = clf.predict(X_test)
         
+        
         if i == 0 :
             print("Accuracy for depth = None : "+ str(accuracy_score(y_test, y_pred)))
-            plot_boundary(fname="data1_depthNone",fitted_estimator=clf,
+            plot_boundary(fname="figures/data1_depthNone",fitted_estimator=clf,
                           X=X_test,y=y_pred,title="First data set with depth = None")
+            
+            tree.plot_tree(clf)
+            dot_data = tree.export_graphviz(clf, out_file=None)
+            graph = graphviz.Source(dot_data)
+            graph.render("figures/tree_data1_depthNone")
+            
         else:
             print("Accuracy for depth = "+str(i)+" : "+ str(accuracy_score(y_test, y_pred)))
-            plot_boundary(fname="data1_depth"+str(i),fitted_estimator=clf,
+            plot_boundary(fname="figures/data1_depth"+str(i),fitted_estimator=clf,
                           X=X_test,y=y_pred,title="First data set with depth = "+str(i))
-        
-# =============================================================================
-#         X1 = X_test[y_test==0]
-#         X2 = X_test[y_test==1]
-#         plt.scatter(X1[:,0], X1[:,1], color="DodgerBlue")
-#         plt.scatter(X2[:,0], X2[:,1], color="darkorange")
-#         plt.plot([0], [0], marker="x", markersize=10)
-#         plt.grid(True)
-#         plt.xlabel("X_0")
-#         if i == 0 :
-#             plt.ylabel("X_1 depth = None")
-#             print("Accuracy for depth = None : "+ str(accuracy_score(y_test, y_pred)))
-#         else:
-#             plt.ylabel("X_1 depth = "+str(i))
-#             print("Accuracy for depth = "+str(i)+" : "+ str(accuracy_score(y_test, y_pred)))
-#         plt.show()
-# =============================================================================
         
     
     
@@ -76,26 +65,15 @@ if __name__ == "__main__":
         
         if i == 0 :
             print("Accuracy for depth = None : "+ str(accuracy_score(y_test, y_pred)))
-            plot_boundary(fname="data2_depthNone",fitted_estimator=clf,
+            plot_boundary(fname="figures/data2_depthNone",fitted_estimator=clf,
                           X=X_test,y=y_pred,title="Second data set with depth = None")
+            
+            tree.plot_tree(clf)
+            dot_data = tree.export_graphviz(clf, out_file=None)
+            graph = graphviz.Source(dot_data)
+            graph.render("figures/tree_data2_depthNone")
+            
         else:
             print("Accuracy for depth = "+str(i)+" : "+ str(accuracy_score(y_test, y_pred)))
-            plot_boundary(fname="data2_depth"+str(i),fitted_estimator=clf,
+            plot_boundary(fname="figures/data2_depth"+str(i),fitted_estimator=clf,
                           X=X_test,y=y_pred,title="Second data set with depth = "+str(i))
-    
-# =============================================================================
-#         X1 = X_test[y_test==0]
-#         X2 = X_test[y_test==1]
-#         plt.scatter(X1[:,0], X1[:,1], color="DodgerBlue")
-#         plt.scatter(X2[:,0], X2[:,1], color="darkorange")
-#         plt.plot([0], [0], marker="x", markersize=10)
-#         plt.grid(True)
-#         plt.xlabel("X_0")
-#         if i == 0 :
-#             plt.ylabel("X_1 depth = None")
-#             print("Accuracy for depth = None : "+ str(accuracy_score(y_test, y_pred)))
-#         else:
-#             plt.ylabel("X_1 depth = "+str(i))
-#             print("Accuracy for depth = "+str(i)+" : "+ str(accuracy_score(y_test, y_pred)))
-#         plt.show()
-# =============================================================================

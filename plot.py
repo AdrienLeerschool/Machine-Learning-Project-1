@@ -30,7 +30,7 @@ def make_cmaps():
     return bg_map, sc_map
 
 
-def plot_boundary(fname, fitted_estimator, X, y, mesh_step_size=0.1, title="", inline_plotting=False):
+def plot_boundary(fname, fitted_estimator, X, y, mesh_step_size=0.01, title="", inline_plotting=False):
     """Plot estimator decision boundary and scatter points
 
     Parameters
